@@ -1,4 +1,4 @@
-const cacheName = 'service-cache';
+const cacheName = 'service-cache-1';
 
 const cachedAssets = [
 	'/index.html',
