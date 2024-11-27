@@ -5,50 +5,50 @@ Load a service worker js file from the html page via script - src -> main.js.
 In main.js, check whether service workers are compatible with the current browser.
 If yes, add an event listener on load.
 
-´´´javascript
+```javascript
 window.addEventListener('load', () => {
     ...
 })
-´´´
+```
 
 In the arrow function, call the registration process of the serviceWorker with a try catch routine.
 
-´´´javascript
+```javascript
 navigator.serviceWorker
 .register('/path/to/the/service-worker.js')
 .then(reg => console.log('Service worker registered'))
 .catch(err => console.error(´ERROR: ${err}´))
-´´´
+```
 
 # registration process
 First define a name for the cache you want to be saved by the browser.
 
-´´´javascript
+```javascript
 const cacheName = 'V1'
-´´´
+```
 
 Once defined a name, define a list with the files you want the browser to save in the cache.
 
-´´´javascript
+```javascript
 const cachedAssets = [
     'file1.html',
     'file2.html',
     'service-worker',
     '...',
 ]
-´´´
+```
 
 # install the service worker
 Let's call the installation process with an event listener and arrow function.
-´´´javascript
+```javascript
 self.addEventListener('install', (event) => {
     ...
 })
-´´´
+```
 
 In the arrow function, use the waitUntil method of the event object. In it, open the cache (cacheName) and .addAll cachedAssets to it.
 
-´´´javascript
+```javascript
 event.waitUntil(
     caches.open(cacheName)
     .then(cache => {
@@ -56,7 +56,7 @@ event.waitUntil(
     })
     .then(() => self.skipWaiting())
 )
-´´´
+```
 
 STUDIOPULSAR 2024
 https://studiopulsar.pro
