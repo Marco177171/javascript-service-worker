@@ -1,4 +1,4 @@
-const cacheName = 'service-cache-1';
+const cacheName = 'v1';
 
 const cachedAssets = [
 	'/index.html',
@@ -24,10 +24,10 @@ self.addEventListener('activate', (event) => {
 	console.log('Service worker activated');
 	event.waitUntil(
 		caches.keys()
-		.then(cacheNames => {
+		.then(cache_keys => {
 			return Promise.all(
-				cacheNames.map(cache => {
-					if (cache !== cacheName) {
+				cache_keys.map(this_cache => {
+					if (this_cache !== cacheName) {
 						console.log('Service worker: clearing old cache');
 						caches.delete(cache); // remove old cache
 					}
